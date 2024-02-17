@@ -25,5 +25,6 @@ ConnectToDatabase()
 //Routes
 app.use('/', indexRouter);
 app.use('/book', require('./routes/books.route'))
+app.use('/sales', require('./routes/sales.route'))
 
 module.exports = app;
