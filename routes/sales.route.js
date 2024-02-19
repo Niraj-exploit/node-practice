@@ -1,46 +1,16 @@
 const express= require('express')
 const router = express.Router()
-const Sale = require('../models/sale.model')
+const { allSales, addSales, updateSales, deleteSales } = require('../controller/sales.controller')
 
-router.get('/allSales', async (req, res)=> {
-    const allSales = await Sale.findAll()
+//localhost:3000/sales/add-sales 
 
-    res.json({
-        allSales
-    })
-})
+router.get('/allSales', allSales)
 
-router.post('/add-sales', (req, res)=> {
-    Sale.create(req.body)
+router.post('/add-sales', addSales)
 
-    res.json({
-        message: "Successfully created"
-    })
-})
+router.put('/update-sales/:id', updateSales )
 
-router.put('/update-sales/:id', (req, res)=> {
-    const id = req.params.id
-
-    Sale.update(req.body, {
-        where: { id: id}
-    })
-
-    res.json({
-        message: "Successfully updated"
-    })
-})
-
-
-router.delete('/delete-sales/:id', (req, res)=> {
-    const id = req.params.id
-
-    Sale.destroy({
-        where: { id: id }
-    })
-
-    res.json({
-        message: "Successfully deleted"
-    })
-})
+router.delete('/delete-sales/:id', deleteSales)
 
 module.exports = router
+

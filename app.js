@@ -24,6 +24,7 @@ ConnectToDatabase()
 
 //Routes
 app.use('/', indexRouter);
+app.use('/users', require('./routes/users.route'))
 app.use('/book', require('./routes/books.route'))
 app.use('/sales', require('./routes/sales.route'))
 
